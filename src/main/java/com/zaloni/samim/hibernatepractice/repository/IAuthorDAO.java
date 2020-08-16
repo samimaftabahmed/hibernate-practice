@@ -18,6 +18,8 @@ public interface IAuthorDAO {
 
     void deleteAuthorByFirstName(String firstName);
 
+    void deleteAuthorByFirstNameAndLastName(String firstname, String lastname);
+
     void deleteAuthorByLastName(String lastName);
 
     void deleteAuthorById(long id);

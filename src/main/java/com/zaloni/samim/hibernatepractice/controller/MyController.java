@@ -72,4 +72,22 @@ public class MyController {
         return "OK";
     }
 
+    @ResponseBody
+    @GetMapping("delete-bulk-first-name")
+    public String deleteBulkFirstName(@RequestParam("first-name") String firstName) {
+
+        iAuthorService.deleteBulkByFirstName(firstName);
+        return "OK";
+    }
+
+    @ResponseBody
+    @GetMapping("delete-bulk-by-name")
+    public String deleteBulkByName(
+            @RequestParam("first-name") String firstName,
+            @RequestParam("last-name") String lastName
+    ) {
+
+        iAuthorService.deleteBulkByName(firstName, lastName);
+        return "OK";
+    }
 }

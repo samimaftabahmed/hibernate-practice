@@ -58,6 +58,19 @@ public class AuthorServiceImpl implements IAuthorService {
         iAuthorDAO.deleteAuthorById(id);
     }
 
+    @Transactional
+    @Override
+    public void deleteBulkByFirstName(String name) {
+
+        iAuthorDAO.deleteAuthorByFirstName(name);
+    }
+
+    @Transactional
+    @Override
+    public void deleteBulkByName(String firstName, String lastName){
+
+        iAuthorDAO.deleteAuthorByFirstNameAndLastName(firstName, lastName);
+    }
 
     @Override
     public List<AuthorEntity> getAllAuthor() {
