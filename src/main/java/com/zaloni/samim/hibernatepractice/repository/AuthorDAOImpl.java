@@ -1,6 +1,7 @@
 package com.zaloni.samim.hibernatepractice.repository;
 
 import com.zaloni.samim.hibernatepractice.model.AuthorEntity;
+import com.zaloni.samim.hibernatepractice.model.AuthorEntity_;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -79,7 +80,7 @@ public class AuthorDAOImpl implements IAuthorDAO {
         CriteriaDelete<AuthorEntity> criteriaDelete = builder.createCriteriaDelete(AuthorEntity.class);
         Root<AuthorEntity> root = criteriaDelete.from(AuthorEntity.class);
 
-        criteriaDelete.where(builder.equal(root.get("firstname"), firstName));
+        criteriaDelete.where(builder.equal(root.get(AuthorEntity_.FIRSTNAME), firstName));
 
         try {
             int deleteCount = emBatch.createQuery(criteriaDelete).executeUpdate();
@@ -102,8 +103,8 @@ public class AuthorDAOImpl implements IAuthorDAO {
 
         criteriaDelete.where(
                 builder.and(
-                        builder.equal(root.get("firstname"), firstname),
-                        builder.equal(root.get("lastname"), lastname)
+                        builder.equal(root.get(AuthorEntity_.FIRSTNAME), firstname),
+                        builder.equal(root.get(AuthorEntity_.LASTNAME), lastname)
                 ));
 
         try {
