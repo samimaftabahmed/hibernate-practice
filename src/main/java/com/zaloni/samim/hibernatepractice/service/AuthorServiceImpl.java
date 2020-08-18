@@ -67,9 +67,16 @@ public class AuthorServiceImpl implements IAuthorService {
 
     @Transactional
     @Override
-    public void deleteBulkByName(String firstName, String lastName){
+    public void deleteBulkByName(String firstName, String lastName) {
 
         iAuthorDAO.deleteAuthorByFirstNameAndLastName(firstName, lastName);
+    }
+
+    @Transactional
+    @Override
+    public void deleteAuthorByNative(long id) {
+
+        iAuthorDAO.deleteByIdUsingNative(id);
     }
 
     @Override
@@ -78,5 +85,10 @@ public class AuthorServiceImpl implements IAuthorService {
         return iAuthorDAO.selectAllAuthor();
     }
 
+    @Override
+    public List<AuthorEntity> getAuthorByFirstNameWithLike(String like) {
+
+        return iAuthorDAO.selectAuthorWithLike(like);
+    }
 
 }

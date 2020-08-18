@@ -60,6 +60,14 @@ public class AuthorDAOImpl implements IAuthorDAO {
     }
 
     @Override
+    public List<AuthorEntity> selectAuthorWithLike(String likeString) {
+
+        javax.persistence.Query query = em.createNativeQuery("select * from author where firstname like ?1", AuthorEntity.class);
+        query.setParameter(1, likeString + "%");
+        return query.getResultList();
+    }
+
+    @Override
     public void insertAuthor(AuthorEntity authorEntity) {
 
         this.persist(authorEntity);
@@ -128,6 +136,16 @@ public class AuthorDAOImpl implements IAuthorDAO {
         this.flushAndClear();
         AuthorEntity authorEntity = this.selectAuthorById(id);
         em.remove(authorEntity);
+        this.flushAndClear();
+    }
+
+    @Override
+    public void deleteByIdUsingNative(long id) {
+
+        this.flushAndClear();
+        javax.persistence.Query query = em.createNativeQuery("delete from author where id=?1", AuthorEntity.class);
+        query.setParameter(1, id);
+        System.out.println(query.executeUpdate());
         this.flushAndClear();
     }
 

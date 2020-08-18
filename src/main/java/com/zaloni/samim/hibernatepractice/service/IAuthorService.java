@@ -20,5 +20,9 @@ public interface IAuthorService {
 
     void deleteBulkByName(String firstName, String lastName);
 
+    void deleteAuthorByNative(long id);
+
     List<AuthorEntity> getAllAuthor();
+
+    List<AuthorEntity> getAuthorByFirstNameWithLike(String like);
 }

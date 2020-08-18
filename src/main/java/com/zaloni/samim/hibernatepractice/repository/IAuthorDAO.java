@@ -12,6 +12,8 @@ public interface IAuthorDAO {
 
     List<AuthorEntity> selectAllAuthor();
 
+    List<AuthorEntity> selectAuthorWithLike(String likeString);
+
     void insertAuthor(AuthorEntity authorEntity);
 
     void updateAuthor(AuthorEntity authorEntity);
@@ -23,4 +25,6 @@ public interface IAuthorDAO {
     void deleteAuthorByLastName(String lastName);
 
     void deleteAuthorById(long id);
+
+    void deleteByIdUsingNative(long id);
 }

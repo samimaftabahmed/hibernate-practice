@@ -90,4 +90,18 @@ public class MyController {
         iAuthorService.deleteBulkByName(firstName, lastName);
         return "OK";
     }
+
+    @ResponseBody
+    @GetMapping("/delete-by-id-native")
+    public String deleteByIdNative(@RequestParam String id) {
+
+        iAuthorService.deleteAuthorByNative(Long.parseLong(id));
+        return "OK";
+    }
+
+    @ResponseBody
+    @GetMapping("/get-author-like")
+    public List<AuthorEntity> getAuthorByFirstNameLike(@RequestParam String like){
+        return iAuthorService.getAuthorByFirstNameWithLike(like);
+    }
 }
